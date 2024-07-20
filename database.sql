@@ -1,6 +1,8 @@
 create database invoice;
 use invoice;
 
+show tables;
+
 create table payment_provider
 (
     id   varchar(36),
