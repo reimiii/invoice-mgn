@@ -7,6 +7,7 @@ import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.SQLRestriction;
 import org.hibernate.annotations.Where;
 
 import java.util.HashSet;
@@ -15,7 +16,7 @@ import java.util.Set;
 @EqualsAndHashCode(callSuper = true)
 @Entity @Data @Table(name = "invoice_type")
 @SQLDelete(sql = "UPDATE invoice_type SET status_record = 'INACTIVE' WHERE id=?")
-@Where(clause = "status_record = 'ACTIVE'")
+@SQLRestriction("status_record = 'ACTIVE'")
 public class InvoiceType extends BaseEntity {
   @NotNull @NotEmpty @Size(min = 3, max = 100)
   private String code;

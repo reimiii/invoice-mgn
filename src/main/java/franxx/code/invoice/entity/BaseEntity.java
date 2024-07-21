@@ -11,11 +11,8 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 
-@MappedSuperclass
-@EntityListeners({
-    AuditingEntityListener.class,
-})
-@Data
+@MappedSuperclass @Data
+@EntityListeners(AuditingEntityListener.class)
 public class BaseEntity {
 
   @Id
