@@ -8,12 +8,16 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.SQLRestriction;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @EqualsAndHashCode(callSuper = true)
 @Entity @Data @Table(name = "payment")
+@SQLDelete(sql = "UPDATE payment SET status_record = 'INACTIVE' WHERE id = ?")
+@SQLRestriction("status_record = 'ACTIVE'")
 public class Payment extends BaseEntity {
 
   @NotNull

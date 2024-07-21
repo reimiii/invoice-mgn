@@ -15,7 +15,7 @@ import java.util.Set;
 
 @EqualsAndHashCode(callSuper = true)
 @Entity @Data @Table(name = "invoice_type")
-@SQLDelete(sql = "UPDATE invoice_type SET status_record = 'INACTIVE' WHERE id=?")
+@SQLDelete(sql = "UPDATE invoice_type SET status_record = 'INACTIVE' WHERE id = ?")
 @SQLRestriction("status_record = 'ACTIVE'")
 public class InvoiceType extends BaseEntity {
   @NotNull @NotEmpty @Size(min = 3, max = 100)
@@ -26,7 +26,7 @@ public class InvoiceType extends BaseEntity {
 
   @ManyToMany
   @JoinTable(
-      name = "invoice type provider",
+      name = "invoice_type_provider",
       joinColumns = @JoinColumn(name = "id_invoice_type"),
       inverseJoinColumns = @JoinColumn(name = "id_payment_provider")
   )
