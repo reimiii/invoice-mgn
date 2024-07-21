@@ -7,13 +7,16 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @EqualsAndHashCode(callSuper = true)
-@Entity @Data
-@Table(name = "invoice")
+@Entity @Data @Table(name = "invoice")
+@SQLDelete(sql = "UPDATE invoice SET status_record = 'INACTIVE' WHERE id=?")
+@Where(clause = "status_record = 'ACTIVE'")
 public class Invoice extends BaseEntity {
 
   @NotNull @NotEmpty @Size(min = 3, max = 100)

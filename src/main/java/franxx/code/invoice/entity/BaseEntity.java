@@ -1,6 +1,7 @@
 package franxx.code.invoice.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
@@ -22,17 +23,22 @@ public class BaseEntity {
   private String id;
 
   @CreatedBy
+  @Column(name = "created_by")
   private String cratedBy;
 
   @LastModifiedBy
+  @Column(name = "updated_by")
   private String updatedBy;
 
   @CreatedDate
+  @Column(name = "created_at")
   private LocalDateTime createdAt;
 
   @LastModifiedDate
+  @Column(name = "updated_at")
   private LocalDateTime updatedAt;
 
-  @Enumerated(EnumType.STRING)
+  @Column(name = "status_record")
+  @NotNull @Enumerated(EnumType.STRING)
   private StatusRecord statusRecord = StatusRecord.ACTIVE;
 }
